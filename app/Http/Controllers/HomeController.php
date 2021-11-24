@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -31,10 +31,8 @@ class HomeController extends Controller
         $users = User::count();
         $categoryes = Category::count();
         $images = Images::count();
-        $articles = Article::count();
-        //dd ($articles);
-        //dd(User::count());
-        //dd ($images);
+        $articles = Articles::count();
+
         return view('index', [
             'users' => $users,
             'categoryes' => $categoryes,

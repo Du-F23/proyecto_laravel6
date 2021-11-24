@@ -60,3 +60,23 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/* Email MailTrap */
+Route::get("/send", ["as" => "send", function () {
+
+    $data = ["link" => "https://github.com/Du-F23"];
+
+    \Mail::send("email.notification", $data, function ($message) {
+
+    $message->from("email@styde.net", "Styde.Net");
+
+    $message->to("al222010329@gmail.com")->subject("Notificación");
+
+    });
+
+    return "Se envío el email";
+    }]);
+
+
+    Auth::routes(['verify' => true]);
+    Auth::routes();
